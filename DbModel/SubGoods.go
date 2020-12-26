@@ -3,19 +3,18 @@ package DbModel
 import (
 	"admin/Utils"
 	"github.com/jinzhu/gorm"
-	"time"
 )
 
 type SubGoods struct {
-	Id         int        `json:"id" gorm:"column:id;primary_key"`
-	Price      float32    `json:"price" gorm:"column:price"`
-	Stoke      *int       `json:"stoke" gorm:"column:stoke"`
-	Sell       int        `json:"sell" gorm:"column:sell"`
-	Img        string     `json:"img" gorm:"column:img"`
-	GoodsId    int        `json:"goods_id" gorm:"column:goods_id"`
-	Template   string     `json:"template" gorm:"column:template"`
-	CreateTime *time.Time `json:"-" gorm:"column:create_time" sql:"-"`
-	UpdateTime *time.Time `json:"-" gorm:"column:update_time" sql:"-"`
+	Id         int         `json:"id" gorm:"column:id;primary_key"`
+	Price      float32     `json:"price" gorm:"column:price"`
+	Stoke      *int        `json:"stoke" gorm:"column:stoke"`
+	Sell       *int        `json:"sell" gorm:"column:sell"`
+	Img        string      `json:"img" gorm:"column:img"`
+	GoodsId    int         `json:"goods_id" gorm:"column:goods_id"`
+	Template   string      `json:"template" gorm:"column:template"`
+	CreateTime *Utils.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
+	UpdateTime *Utils.Time `json:"-" gorm:"column:update_time" sql:"-"`
 }
 
 func (s *SubGoods) TableName() string {

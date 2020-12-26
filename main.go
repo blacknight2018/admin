@@ -4,6 +4,7 @@ import (
 	"admin/Config"
 	"admin/Service/Goods"
 	"admin/Service/Order"
+	"admin/Service/SubGoods"
 	"admin/Service/User"
 	"admin/Utils"
 	"github.com/gin-gonic/gin"
@@ -19,17 +20,42 @@ func main() {
 		context.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE,PUT")
 		context.Writer.Header().Set("Access-Control-Max-Age", "3600")
 		context.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		context.Writer.Header().Set("Content-Type", "application/json;charset=utf-8")
 		context.Next()
 	})
 
 	order := r.Group("/order")
 	user := r.Group("/user")
 	goods := r.Group("/goods")
+	subGoods := r.Group("/sub_goods")
+	subGoods.GET("", func(context *gin.Context) {
+		goodsId := Utils.StrToInt(context.Query("goods_id"))
+		context.Writer.Write([]byte(SubGoods.QueryAllSubGoods(goodsId).Get()))
+	})
+	subGoods.OPTIONS("", func(context *gin.Context) {
+		context.Status(http.StatusOK)
+	})
+	subGoods.POST("", func(context *gin.Context) {
+		type name struct {
+			Id       int     `json:"id"`
+			Price    float32 `json:"price"`
+			Stoke    int     `json:"stoke"`
+			Sell     int     `json:"sell"`
+			Img      string  `json:"img"`
+			Template []int   `json:"template"`
+		}
+		var tmp name
+		context.ShouldBindJSON(&tmp)
+		context.Writer.Write([]byte(SubGoods.UpdateSubGoods(tmp.Id, tmp.Price, tmp.Stoke, tmp.Sell, tmp.Img, tmp.Template).Get()))
+	})
 	goods.GET("", func(context *gin.Context) {
 		goodsTitle := context.Query("title")
 		limit := Utils.StrToInt(context.Query("limit"))
 		offset := Utils.StrToInt(context.Query("offset"))
 		context.Writer.Write([]byte(Goods.QueryGoods(goodsTitle, limit, offset).Get()))
+	})
+	goods.GET("/list", func(context *gin.Context) {
+		context.Writer.Write([]byte(Goods.QueryAllGoods().Get()))
 	})
 	goods.OPTIONS("", func(context *gin.Context) {
 		context.Status(http.StatusOK)

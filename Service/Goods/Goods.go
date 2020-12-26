@@ -69,3 +69,13 @@ func AddGoods(title string, desc string, template string, banner []string, detai
 	}
 	return ret
 }
+
+func QueryAllGoods() Result.Result {
+	var ret Result.Result
+	ret.Code = Result.UnKnow
+	if ok, data := DbModel.SelectGoodsSet(nil, nil, nil); ok {
+		ret.Data = data
+		ret.Code = Result.Ok
+	}
+	return ret
+}

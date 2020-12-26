@@ -28,7 +28,7 @@ func (g *Goods) Insert() bool {
 	return InsertDBObj(g)
 }
 
-func SelectGoodsLikeTitle(title string, limit int, offset int) (bool, []Goods) {
+func SelectGoodsLikeTitle(title string, limit *int, offset *int) (bool, []Goods) {
 	var goodsSet []Goods
 
 	db := Config.GetOneDB()
@@ -45,9 +45,9 @@ func SelectGoodsByGoodsId(goodsId int) (bool, *Goods) {
 	return SelectTableRecordById((&Goods{}).TableName(), goodsId, nil, &goods), &goods
 }
 
-func SelectGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []Goods) {
+func SelectGoodsSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Goods) {
 	var goodsSet []Goods
-	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, &limit, &offset, Utils.EmptyString), goodsSet
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, limit, offset, Utils.EmptyString), goodsSet
 }
 
 func SelectGoodsSetCountByNickName(goodsTitle string, limit *int, offset *int) int {

@@ -57,6 +57,13 @@ func StringArrayToJSON(strArray []string) string {
 	return EmptyString
 }
 
+func IntArrayToJSON(intArray []int) string {
+	if bytes, err := json.Marshal(intArray); err == nil {
+		return string(bytes)
+	}
+	return EmptyString
+}
+
 func StrToInt(str string) int {
 	var ret int
 	ret = 0
