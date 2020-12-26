@@ -3,18 +3,17 @@ package DbModel
 import (
 	"admin/Config"
 	"admin/Utils"
-	"time"
 )
 
 type Goods struct {
-	Id         int        `json:"id" gorm:"column:id;primary_key"`
-	Title      string     `json:"title" gorm:"column:title"`
-	Banner     string     `json:"banner" gorm:"column:banner"`
-	Template   string     `json:"template" gorm:"column:template"`
-	CreateTime *time.Time `json:"-" gorm:"column:create_time" sql:"-"`
-	UpdateTime *time.Time `json:"-" gorm:"column:update_time" sql:"-"`
-	Desc       string     `json:"desc" gorm:"column:desc"`
-	DetailImg  string     `json:"detail_img" gorm:"column:detail_img"`
+	Id         int         `json:"id" gorm:"column:id;primary_key"`
+	Title      string      `json:"title" gorm:"column:title"`
+	Banner     string      `json:"banner" gorm:"column:banner"`
+	Template   string      `json:"template" gorm:"column:template"`
+	CreateTime *Utils.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
+	UpdateTime *Utils.Time `json:"-" gorm:"column:update_time" sql:"-"`
+	Desc       string      `json:"desc" gorm:"column:desc"`
+	DetailImg  string      `json:"detail_img" gorm:"column:detail_img"`
 }
 
 func (g *Goods) TableName() string {
@@ -48,5 +47,20 @@ func SelectGoodsByGoodsId(goodsId int) (bool, *Goods) {
 
 func SelectGoodsSet(condition map[string]interface{}, limit int, offset int) (bool, []Goods) {
 	var goodsSet []Goods
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, &limit, &offset, Utils.EmptyString), goodsSet
+}
+
+func SelectGoodsSetCountByNickName(goodsTitle string, limit *int, offset *int) int {
+	var ret int
+	var condition = make(map[string]interface{})
+	condition["title"] = goodsTitle
+	_, ret = SelectTableRecordSetCount((&Goods{}).TableName(), condition, limit, offset, Utils.EmptyString)
+	return ret
+}
+
+func SelectGoodsSetByNickName(goodsTitle string, limit int, offset int) (bool, []Goods) {
+	var goodsSet []Goods
+	var condition = make(map[string]interface{})
+	condition["title"] = goodsTitle
 	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, &limit, &offset, Utils.EmptyString), goodsSet
 }

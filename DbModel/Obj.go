@@ -110,6 +110,24 @@ func DeleteDBObj(in interface{}) bool {
 	return err == nil
 }
 
+func SelectTableRecordSetCount(tableName string, condition map[string]interface{}, limit *int, offset *int, order string) (bool, int) {
+	db := Config.GetOneDB()
+	var ret int
+	defer db.Close()
+	if db == nil {
+		return false, 0
+	}
+	dbCondition := db.Table(tableName).Where(condition).Order(order)
+	if limit != nil {
+		dbCondition = dbCondition.Limit(*limit)
+	}
+	if offset != nil {
+		dbCondition = dbCondition.Offset(*offset)
+	}
+	err := dbCondition.Count(&ret).Error
+
+	return err == nil, ret
+}
 func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit *int, offset *int, order string) bool {
 	db := Config.GetOneDB()
 	if db == nil {
