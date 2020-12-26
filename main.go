@@ -16,7 +16,7 @@ func main() {
 	r.Use(func(context *gin.Context) {
 		context.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 		context.Writer.Header().Set("Access-Control-Allow-Headers", "*")
-		context.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+		context.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE,PUT")
 		context.Writer.Header().Set("Access-Control-Max-Age", "3600")
 		context.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 		context.Next()
@@ -45,6 +45,21 @@ func main() {
 		var tmp name
 		context.ShouldBindJSON(&tmp)
 		context.Writer.Write([]byte(Goods.AddGoods(tmp.Title, tmp.Desc, tmp.Template, tmp.Banner, tmp.DetailImg).Get()))
+	})
+	goods.PUT("", func(context *gin.Context) {
+		type name struct {
+			Id        int      `json:"id"`
+			Title     string   `json:"title"`
+			Desc      string   `json:"desc"`
+			Template  string   `json:"template"`
+			Banner    []string `json:"banner"`
+			DetailImg []string `json:"detail_img"`
+		}
+		var tmp name
+		if context.ShouldBindJSON(&tmp) == nil {
+			context.Writer.Write([]byte(Goods.UpdateGoods(tmp.Id, tmp.Title, tmp.Desc, tmp.Template, tmp.Banner, tmp.DetailImg).Get()))
+		}
+
 	})
 	user.GET("", func(context *gin.Context) {
 		nickName := context.Query("nick_name")
