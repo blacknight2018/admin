@@ -6,6 +6,24 @@ import (
 	"admin/Utils"
 )
 
+func AddSubGoods(goodsId int, price float32, stoke int, sell int, img string, template []int) Result.Result {
+	var subGoods DbModel.SubGoods
+	var ret Result.Result
+	ret.Code = Result.UnKnow
+
+	subGoods.GoodsId = goodsId
+	subGoods.Price = price
+	subGoods.Stoke = &stoke
+	subGoods.Sell = &sell
+	subGoods.Img = img
+	subGoods.Template = Utils.IntArrayToJSON(template)
+	if subGoods.Insert() {
+		ret.Code = Result.Ok
+	}
+
+	return ret
+}
+
 func QueryAllSubGoods(goodsId int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow

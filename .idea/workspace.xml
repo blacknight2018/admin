@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="添加了保存商品接口">
-      <change afterPath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" afterDir="false" />
+    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="完善了部分代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Goods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/SubGoods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Goods/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Goods/Goods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/Utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/Utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Order/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Order/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +39,7 @@
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -93,13 +92,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="完成订单查询功能" />
-    <MESSAGE value="完善了部分代码" />
     <MESSAGE value="添加了创建商品接口" />
     <MESSAGE value="添加了保存商品接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了保存商品接口" />
+    <MESSAGE value="完善了部分代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善了部分代码" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

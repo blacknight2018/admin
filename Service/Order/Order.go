@@ -14,7 +14,36 @@ const (
 	All        = iota
 )
 
-func QueryOrder() Result.Result {
+/**
+ * @Description: 分页查询订单
+ * @param limit
+ * @param offset
+ * @return Result.Result
+ */
+func GetOrder(limit int, offset int) Result.Result {
+	var ret Result.Result
+	ret.Code = Result.Ok
+
+	type name struct {
+		Total int             `json:"total"`
+		Order []DbModel.Order `json:"order"`
+	}
+	var retData name
+	if ok, data := DbModel.SelectOrderSet(nil, limit, offset, Utils.EmptyString); ok {
+		_, cnt := DbModel.SelectOrderCount()
+		retData.Total = cnt
+		retData.Order = data
+		ret.Data = retData
+		ret.Code = Result.Ok
+	}
+	return ret
+}
+
+/**
+ * @Description: 统计订单信息
+ * @return Result.Result
+ */
+func SummaryOrder() Result.Result {
 	var ret Result.Result
 	ret.Code = Result.Ok
 	type name struct {

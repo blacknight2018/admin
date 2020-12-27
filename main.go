@@ -28,6 +28,7 @@ func main() {
 	user := r.Group("/user")
 	goods := r.Group("/goods")
 	subGoods := r.Group("/sub_goods")
+
 	subGoods.GET("", func(context *gin.Context) {
 		goodsId := Utils.StrToInt(context.Query("goods_id"))
 		context.Writer.Write([]byte(SubGoods.QueryAllSubGoods(goodsId).Get()))
@@ -36,6 +37,19 @@ func main() {
 		context.Status(http.StatusOK)
 	})
 	subGoods.POST("", func(context *gin.Context) {
+		type name struct {
+			GoodsId  int     `json:"goods_id"`
+			Price    float32 `json:"price"`
+			Stoke    int     `json:"stoke"`
+			Sell     int     `json:"sell"`
+			Img      string  `json:"img"`
+			Template []int   `json:"template"`
+		}
+		var tmp name
+		context.ShouldBindJSON(&tmp)
+		context.Writer.Write([]byte(SubGoods.AddSubGoods(tmp.GoodsId, tmp.Price, tmp.Stoke, tmp.Sell, tmp.Img, tmp.Template).Get()))
+	})
+	subGoods.PUT("", func(context *gin.Context) {
 		type name struct {
 			Id       int     `json:"id"`
 			Price    float32 `json:"price"`
@@ -94,7 +108,12 @@ func main() {
 		context.Writer.Write([]byte(User.QueryUser(nickName, limit, offset).Get()))
 	})
 	order.GET("/query", func(context *gin.Context) {
-		context.Writer.Write([]byte(Order.QueryOrder().Get()))
+		context.Writer.Write([]byte(Order.SummaryOrder().Get()))
+	})
+	order.GET("", func(context *gin.Context) {
+		limit := Utils.StrToInt(context.Query("limit"))
+		offset := Utils.StrToInt(context.Query("offset"))
+		context.Writer.Write([]byte(Order.GetOrder(limit, offset).Get()))
 	})
 	r.Run(":45678")
 }
