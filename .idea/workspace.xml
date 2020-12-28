@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="完善了部分代码">
+    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="添加了订单查询">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Order/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Order/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Goods/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Goods/Goods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/SubGoods/SubGoods.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/User/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/Service/User/User.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +98,8 @@
     <MESSAGE value="添加了创建商品接口" />
     <MESSAGE value="添加了保存商品接口" />
     <MESSAGE value="完善了部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了部分代码" />
+    <MESSAGE value="添加了订单查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了订单查询" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

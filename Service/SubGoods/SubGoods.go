@@ -6,6 +6,16 @@ import (
 	"admin/Utils"
 )
 
+/**
+ * @Description: 添加一种商品规格
+ * @param goodsId
+ * @param price
+ * @param stoke
+ * @param sell
+ * @param img
+ * @param template
+ * @return Result.Result
+ */
 func AddSubGoods(goodsId int, price float32, stoke int, sell int, img string, template []int) Result.Result {
 	var subGoods DbModel.SubGoods
 	var ret Result.Result
@@ -24,6 +34,11 @@ func AddSubGoods(goodsId int, price float32, stoke int, sell int, img string, te
 	return ret
 }
 
+/**
+ * @Description: 列出某个商品下的所有商品规格
+ * @param goodsId
+ * @return Result.Result
+ */
 func QueryAllSubGoods(goodsId int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
@@ -34,6 +49,16 @@ func QueryAllSubGoods(goodsId int) Result.Result {
 	return ret
 }
 
+/**
+ * @Description: 更新某个子商品
+ * @param subGoodsId
+ * @param price
+ * @param stoke
+ * @param sell
+ * @param img
+ * @param template
+ * @return Result.Result
+ */
 func UpdateSubGoods(subGoodsId int, price float32, stoke int, sell int, img string, template []int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow

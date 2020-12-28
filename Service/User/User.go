@@ -5,6 +5,13 @@ import (
 	"admin/Result"
 )
 
+/**
+ * @Description: 分页查询用户表
+ * @param nickName
+ * @param limit
+ * @param offset
+ * @return Result.Result
+ */
 func QueryUser(nickName string, limit int, offset int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow

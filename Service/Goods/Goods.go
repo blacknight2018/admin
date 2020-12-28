@@ -6,6 +6,13 @@ import (
 	"encoding/json"
 )
 
+/**
+ * @Description: 分页查询商品表
+ * @param goodsTitle
+ * @param limit
+ * @param offset
+ * @return Result.Result
+ */
 func QueryGoods(goodsTitle string, limit int, offset int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
@@ -23,6 +30,16 @@ func QueryGoods(goodsTitle string, limit int, offset int) Result.Result {
 	return ret
 }
 
+/**
+ * @Description:更新商品信息
+ * @param goodsId
+ * @param title
+ * @param desc
+ * @param template
+ * @param banner
+ * @param detailImg
+ * @return Result.Result
+ */
 func UpdateGoods(goodsId int, title string, desc string, template string, banner []string, detailImg []string) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
@@ -47,6 +64,15 @@ func UpdateGoods(goodsId int, title string, desc string, template string, banner
 	return ret
 }
 
+/**
+ * @Description: 添加商品
+ * @param title
+ * @param desc
+ * @param template
+ * @param banner
+ * @param detailImg
+ * @return Result.Result
+ */
 func AddGoods(title string, desc string, template string, banner []string, detailImg []string) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
