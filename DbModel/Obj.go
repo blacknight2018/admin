@@ -28,6 +28,9 @@ func SelectTableRecordById(tableName string, id int, condition map[string]interf
 	case *Cart:
 		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
 		break
+	case *Banner:
+		err = db.Table(tableName).Where("id = ?", id).Where(condition).First(v).Error
+		break
 	}
 	return err == nil
 }
@@ -58,6 +61,9 @@ func InsertDBObj(in interface{}) bool {
 	case *SubGoods:
 		err = db.Create(v).Error
 		break
+	case *Banner:
+		err = db.Create(v).Error
+		break
 	}
 	return err == nil
 }
@@ -71,22 +77,25 @@ func UpdateDBObj(in interface{}) bool {
 	var err error
 	switch v := in.(type) {
 	case *User:
-		db.Model(&User{}).Where("id = ?", v.Id).Update(v)
+		err = db.Model(&User{}).Where("id = ?", v.Id).Update(v).Error
 		break
 	case *Address:
-		db.Model(&Address{}).Where("id = ?", v.Id).Update(v)
+		err = db.Model(&Address{}).Where("id = ?", v.Id).Update(v).Error
 		break
 	case *Goods:
-		db.Model(&Goods{}).Where("id = ?", v.Id).Update(v)
+		err = db.Model(&Goods{}).Where("id = ?", v.Id).Update(v).Error
 		break
 	case *SubGoods:
-		db.Model(&SubGoods{}).Where("id = ?", v.Id).Update(v)
+		err = db.Model(&SubGoods{}).Where("id = ?", v.Id).Update(v).Error
 		break
 	case *Cart:
-		db.Model(&Cart{}).Where("id = ?", v.Id).Update(v)
+		err = db.Model(&Cart{}).Where("id = ?", v.Id).Update(v).Error
 		break
 	case *Order:
-		db.Model(&Order{}).Where("id = ?", v.Id).Update(v)
+		err = db.Model(&Order{}).Where("id = ?", v.Id).Update(v).Error
+		break
+	case *Banner:
+		err = db.Model(&Banner{}).Where("id = ?", v.Id).Update(v).Error
 		break
 	}
 	return err == nil
@@ -104,6 +113,9 @@ func DeleteDBObj(in interface{}) bool {
 		err = db.Delete(v).Error
 		break
 	case *Address:
+		err = db.Delete(v).Error
+		break
+	case *Banner:
 		err = db.Delete(v).Error
 		break
 	}
