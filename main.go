@@ -2,6 +2,7 @@ package main
 
 import (
 	"admin/Config"
+	"admin/Service/Banner"
 	"admin/Service/Goods"
 	"admin/Service/Order"
 	"admin/Service/SubGoods"
@@ -28,6 +29,40 @@ func main() {
 	user := r.Group("/user")
 	goods := r.Group("/goods")
 	subGoods := r.Group("/sub_goods")
+	home := r.Group("/home")
+	home.GET("/banner", func(context *gin.Context) {
+		context.Writer.Write([]byte(Banner.GetBannerList().Get()))
+	})
+	home.PUT("/banner", func(context *gin.Context) {
+		type name struct {
+			Id         int    `json:"id"`
+			Img        string `json:"img"`
+			SubGoodsId int    `json:"sub_goods_id"`
+		}
+		var tmp name
+		context.ShouldBindJSON(&tmp)
+		context.Writer.Write([]byte(Banner.UpdateBanner(tmp.Id, tmp.Img, tmp.SubGoodsId).Get()))
+	})
+	home.POST("/banner", func(context *gin.Context) {
+		type name struct {
+			Img        string `json:"img"`
+			SubGoodsId int    `json:"sub_goods_id"`
+		}
+		var tmp name
+		context.ShouldBindJSON(&tmp)
+		context.Writer.Write([]byte(Banner.AddBanner(tmp.Img, tmp.SubGoodsId).Get()))
+	})
+	home.DELETE("/banner", func(context *gin.Context) {
+		type name struct {
+			Id int `json:"id"`
+		}
+		var tmp name
+		context.ShouldBindJSON(&tmp)
+		context.Writer.Write([]byte(Banner.RemoveBanner(tmp.Id).Get()))
+	})
+	home.OPTIONS("/banner", func(context *gin.Context) {
+		context.Status(http.StatusOK)
+	})
 
 	subGoods.GET("", func(context *gin.Context) {
 		goodsId := Utils.StrToInt(context.Query("goods_id"))

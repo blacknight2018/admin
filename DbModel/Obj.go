@@ -172,6 +172,9 @@ func SelectTableRecordSet(tableName string, out interface{}, condition map[strin
 	case *[]Address:
 		err = dbCondition.Find(v).Error
 		break
+	case *[]Banner:
+		err = dbCondition.Find(v).Error
+		break
 	}
 	defer db.Close()
 

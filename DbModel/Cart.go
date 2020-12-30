@@ -4,16 +4,15 @@ import (
 	"admin/Config"
 	"admin/Utils"
 	"github.com/jinzhu/gorm"
-	"time"
 )
 
 type Cart struct {
-	Id         int        `json:"id" gorm:"column:id;primary_key"`
-	UserId     int        `json:"user_id" gorm:"column:user_id"`
-	SubGoodsId int        `json:"sub_goods_id" gorm:"column:sub_goods_id"`
-	Amount     int        `json:"amount" gorm:"column:amount"`
-	CreateTime *time.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
-	UpdateTime *time.Time `json:"update_time" gorm:"column:update_time" sql:"-"`
+	Id         int         `json:"id" gorm:"column:id;primary_key"`
+	UserId     int         `json:"user_id" gorm:"column:user_id"`
+	SubGoodsId int         `json:"sub_goods_id" gorm:"column:sub_goods_id"`
+	Amount     int         `json:"amount" gorm:"column:amount"`
+	CreateTime *Utils.Time `json:"create_time" gorm:"column:create_time" sql:"-"`
+	UpdateTime *Utils.Time `json:"update_time" gorm:"column:update_time" sql:"-"`
 }
 
 func (c *Cart) TableName() string {

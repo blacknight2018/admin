@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="改善了部分代码">
-      <change afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
+    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="添加了Banner 修复了Obj的Update问题">
+      <change afterPath="$PROJECT_DIR$/Service/Banner/Banner.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Address.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Address.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Banner.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Cart.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel/Obj.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Obj.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DbModel/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +105,8 @@
     <MESSAGE value="完善了部分代码" />
     <MESSAGE value="添加了订单查询" />
     <MESSAGE value="改善了部分代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="改善了部分代码" />
+    <MESSAGE value="添加了Banner 修复了Obj的Update问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了Banner 修复了Obj的Update问题" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
