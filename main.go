@@ -150,5 +150,18 @@ func main() {
 		offset := Utils.StrToInt(context.Query("offset"))
 		context.Writer.Write([]byte(Order.GetOrder(limit, offset).Get()))
 	})
+	order.PUT("/delivery", func(context *gin.Context) {
+		type name struct {
+			OrderId         int    `json:"order_id"`
+			DeliveryCode    string `json:"delivery_code"`
+			DeliveryCompany string `json:"delivery_company"`
+		}
+		var tmp name
+		context.ShouldBindJSON(&tmp)
+		context.Writer.Write([]byte(Order.UpdateDelivery(tmp.OrderId, tmp.DeliveryCompany, tmp.DeliveryCode).Get()))
+	})
+	order.OPTIONS("/delivery", func(context *gin.Context) {
+		context.Status(http.StatusOK)
+	})
 	r.Run(":45678")
 }

@@ -7,11 +7,10 @@ import (
 )
 
 const (
-	UnPay      = iota
-	Pay        = iota
-	UnDelivery = iota
-	Delivery   = iota
-	All        = iota
+	UnPay    = iota
+	Pay      = iota
+	Delivery = iota
+	All      = iota
 )
 
 /**
@@ -47,11 +46,10 @@ func SummaryOrder() Result.Result {
 	var ret Result.Result
 	ret.Code = Result.Ok
 	type name struct {
-		Total           int `json:"total"`
-		PayCount        int `json:"pay_count"`
-		UnPayCount      int `json:"unPay_count"`
-		DeliveryCount   int `json:"delivery_count"`
-		UnDeliveryCount int `json:"unDelivery_count"`
+		Total         int `json:"total"`
+		PayCount      int `json:"pay_count"`
+		UnPayCount    int `json:"unPay_count"`
+		DeliveryCount int `json:"delivery_count"`
 	}
 	var retData name
 
@@ -67,11 +65,28 @@ func SummaryOrder() Result.Result {
 		retData.DeliveryCount = len(data)
 		retData.Total += retData.DeliveryCount
 	}
-	if ok, data := DbModel.SelectOrderSetByStatus(UnDelivery, nil, nil, Utils.EmptyString); ok {
-		retData.UnDeliveryCount = len(data)
-		retData.Total += retData.UnDeliveryCount
-	}
+	//if ok, data := DbModel.SelectOrderSetByStatus(UnDelivery, nil, nil, Utils.EmptyString); ok {
+	//	retData.UnDeliveryCount = len(data)
+	//	retData.Total += retData.UnDeliveryCount
+	//}
 
 	ret.Data = retData
+	return ret
+}
+
+func UpdateDelivery(orderId int, company string, deliveryCode string) Result.Result {
+	var ret Result.Result
+
+	ret.Code = Result.UnKnow
+
+	if ok, data := DbModel.SelectOrderByOrderId(orderId); ok {
+		data.DeliveryCode = deliveryCode
+		data.DeliveryCompany = company
+		data.Status = Delivery
+		if data.Update() {
+			ret.Code = Result.Ok
+		}
+	}
+
 	return ret
 }

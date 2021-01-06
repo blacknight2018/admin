@@ -19,8 +19,12 @@ func UpdateBanner(bannerId int, img string, subGoodsId int) Result.Result {
 	var ret Result.Result
 	ret.Code = Result.UnKnow
 	if ok, data := DbModel.SelectBannerByBannerId(bannerId); ok {
-		ret.Code = Result.Ok
-		ret.Data = data
+		data.Img = img
+		data.SubGoodsId = subGoodsId
+		if data.Update() {
+			ret.Code = Result.Ok
+			ret.Data = data
+		}
 	}
 	return ret
 }
