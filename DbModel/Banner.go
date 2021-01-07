@@ -29,7 +29,7 @@ func (c *Banner) Delete() bool {
 }
 func SelectBannerSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Banner) {
 	var bannerSet []Banner
-	return SelectTableRecordSet((&Banner{}).TableName(), &bannerSet, condition, limit, offset, Utils.EmptyString), bannerSet
+	return SelectTableRecordSet((&Banner{}).TableName(), &bannerSet, condition, nil, limit, offset, Utils.EmptyString), bannerSet
 }
 
 func SelectBannerByBannerId(bannerId int) (bool, *Banner) {

@@ -140,12 +140,17 @@ func SelectTableRecordSetCount(tableName string, condition map[string]interface{
 
 	return err == nil, ret
 }
-func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, limit *int, offset *int, order string) bool {
+func SelectTableRecordSet(tableName string, out interface{}, condition map[string]interface{}, likeCondition map[string]string, limit *int, offset *int, order string) bool {
 	db := Config.GetOneDB()
 	if db == nil {
 		return false
 	}
 	dbCondition := db.Table(tableName).Where(condition).Order(order)
+	if likeCondition != nil {
+		for s := range likeCondition {
+			dbCondition = dbCondition.Where(s+" like ?", "%"+likeCondition[s]+"%")
+		}
+	}
 	if limit != nil {
 		dbCondition = dbCondition.Limit(*limit)
 	}

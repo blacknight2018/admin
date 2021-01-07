@@ -41,7 +41,7 @@ func SelectOrderByOrderId(orderId int) (bool, *Order) {
 
 func SelectOrderSet(condition map[string]interface{}, limit int, offset int, order string) (bool, []Order) {
 	var orderSet []Order
-	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, &limit, &offset, order), orderSet
+	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, nil, &limit, &offset, order), orderSet
 }
 
 func SelectOrderCount() (bool, int) {
@@ -52,7 +52,7 @@ func SelectOrderSetByStatus(status int, limit *int, offset *int, order string) (
 	var orderSet []Order
 	var condition = make(map[string]interface{})
 	condition["status"] = status
-	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, limit, offset, order), orderSet
+	return SelectTableRecordSet((&Order{}).TableName(), &orderSet, condition, nil, limit, offset, order), orderSet
 
 }
 

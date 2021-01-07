@@ -44,5 +44,5 @@ func SelectAddressByAddressId(addressId int) (bool, *Address) {
 
 func SelectAddressSet(condition map[string]interface{}, limit int, offset int, order string) (bool, []Address) {
 	var addressSet []Address
-	return SelectTableRecordSet("address", &addressSet, condition, &limit, &offset, order), addressSet
+	return SelectTableRecordSet("address", &addressSet, condition, nil, &limit, &offset, order), addressSet
 }

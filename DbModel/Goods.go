@@ -47,7 +47,7 @@ func SelectGoodsByGoodsId(goodsId int) (bool, *Goods) {
 
 func SelectGoodsSet(condition map[string]interface{}, limit *int, offset *int) (bool, []Goods) {
 	var goodsSet []Goods
-	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, limit, offset, Utils.EmptyString), goodsSet
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, nil, limit, offset, Utils.EmptyString), goodsSet
 }
 
 func SelectGoodsSetCountByNickName(goodsTitle string, limit *int, offset *int) int {
@@ -60,7 +60,7 @@ func SelectGoodsSetCountByNickName(goodsTitle string, limit *int, offset *int) i
 
 func SelectGoodsSetByNickName(goodsTitle string, limit int, offset int) (bool, []Goods) {
 	var goodsSet []Goods
-	var condition = make(map[string]interface{})
+	var condition = make(map[string]string)
 	condition["title"] = goodsTitle
-	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, condition, &limit, &offset, Utils.EmptyString), goodsSet
+	return SelectTableRecordSet((&Goods{}).TableName(), &goodsSet, nil, condition, &limit, &offset, Utils.EmptyString), goodsSet
 }

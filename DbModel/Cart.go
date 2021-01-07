@@ -71,7 +71,7 @@ func SelectCartByCartId(cartId int) (bool, *Cart) {
  */
 func SelectCartSet(condition map[string]interface{}, limit int, offset int) (bool, []Cart) {
 	var cartSet []Cart
-	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, &limit, &offset, Utils.EmptyString), cartSet
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, nil, &limit, &offset, Utils.EmptyString), cartSet
 }
 
 /**
@@ -84,7 +84,7 @@ func SelectCartSet(condition map[string]interface{}, limit int, offset int) (boo
  */
 func SelectCartSetByUserId(userId int, limit int, offset int) (bool, []Cart) {
 	var cartSet []Cart
-	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, &limit, &offset, "create_time desc"), cartSet
+	return SelectTableRecordSet((&Cart{}).TableName(), &cartSet, map[string]interface{}{"user_id": userId}, nil, &limit, &offset, "create_time desc"), cartSet
 }
 
 /**
@@ -99,7 +99,7 @@ func SelectUserCartBySubGoodsId(userId int, subGoodsId int) (bool, *Cart) {
 	condition := map[string]interface{}{"user_id": userId, "sub_goods_id": subGoodsId}
 	limit := 1
 	offset := 0
-	SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, &limit, &offset, Utils.EmptyString)
+	SelectTableRecordSet((&Cart{}).TableName(), &cartSet, condition, nil, &limit, &offset, Utils.EmptyString)
 	if len(cartSet) >= 1 {
 		return true, &cartSet[0]
 	}
