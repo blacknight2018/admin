@@ -50,9 +50,9 @@ func SelectUserSet(condition map[string]interface{}, limit int, offset int) (boo
 
 func SelectUserSetCountByNickName(nickName string, limit *int, offset *int) int {
 	var ret int
-	var condition = make(map[string]interface{})
+	var condition = make(map[string]string)
 	condition["nick_name"] = nickName
-	_, ret = SelectTableRecordSetCount((&User{}).TableName(), condition, limit, offset, Utils.EmptyString)
+	_, ret = SelectTableRecordSetCount((&User{}).TableName(), nil, condition, limit, offset, Utils.EmptyString)
 	return ret
 }
 

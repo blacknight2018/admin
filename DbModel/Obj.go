@@ -122,7 +122,7 @@ func DeleteDBObj(in interface{}) bool {
 	return err == nil
 }
 
-func SelectTableRecordSetCount(tableName string, condition map[string]interface{}, limit *int, offset *int, order string) (bool, int) {
+func SelectTableRecordSetCount(tableName string, condition map[string]interface{}, likeCondition map[string]string, limit *int, offset *int, order string) (bool, int) {
 	db := Config.GetOneDB()
 	var ret int
 	defer db.Close()
@@ -130,6 +130,11 @@ func SelectTableRecordSetCount(tableName string, condition map[string]interface{
 		return false, 0
 	}
 	dbCondition := db.Table(tableName).Where(condition).Order(order)
+	if likeCondition != nil {
+		for s := range likeCondition {
+			dbCondition = dbCondition.Where(s+" like ?", "%"+likeCondition[s]+"%")
+		}
+	}
 	if limit != nil {
 		dbCondition = dbCondition.Limit(*limit)
 	}

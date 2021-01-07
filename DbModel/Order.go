@@ -45,7 +45,7 @@ func SelectOrderSet(condition map[string]interface{}, limit int, offset int, ord
 }
 
 func SelectOrderCount() (bool, int) {
-	return SelectTableRecordSetCount((&Order{}).TableName(), nil, nil, nil, Utils.EmptyString)
+	return SelectTableRecordSetCount((&Order{}).TableName(), nil, nil, nil, nil, Utils.EmptyString)
 }
 
 func SelectOrderSetByStatus(status int, limit *int, offset *int, order string) (bool, []Order) {

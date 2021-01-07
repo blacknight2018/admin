@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="添加了发货填写物流功能">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Address.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Address.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Banner.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Banner.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/Cart.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Cart.go" afterDir="false" />
+    <list default="true" id="a9441262-5c09-44f7-becb-db6b74771d65" name="Default Changelist" comment="添加了支持模糊搜索">
       <change beforePath="$PROJECT_DIR$/DbModel/Goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Goods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel/Obj.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Obj.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel/Order.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/Order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DbModel/SubGoods.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/SubGoods.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DbModel/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/DbModel/User.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +104,8 @@
     <MESSAGE value="添加了Banner 修复了Obj的Update问题" />
     <MESSAGE value="添加了Banner等接口,修复了部分问题" />
     <MESSAGE value="添加了发货填写物流功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了发货填写物流功能" />
+    <MESSAGE value="添加了支持模糊搜索" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了支持模糊搜索" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

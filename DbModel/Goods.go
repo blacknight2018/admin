@@ -52,9 +52,9 @@ func SelectGoodsSet(condition map[string]interface{}, limit *int, offset *int) (
 
 func SelectGoodsSetCountByNickName(goodsTitle string, limit *int, offset *int) int {
 	var ret int
-	var condition = make(map[string]interface{})
+	var condition = make(map[string]string)
 	condition["title"] = goodsTitle
-	_, ret = SelectTableRecordSetCount((&Goods{}).TableName(), condition, limit, offset, Utils.EmptyString)
+	_, ret = SelectTableRecordSetCount((&Goods{}).TableName(), nil, condition, limit, offset, Utils.EmptyString)
 	return ret
 }
 
